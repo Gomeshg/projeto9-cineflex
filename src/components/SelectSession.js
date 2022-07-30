@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Schedules from './Schedules';
 import { useParams } from 'react-router-dom';
 
-export default function SelectedMovie({}){
+export default function SelectSession({}){
 
     const { idFilme } = useParams();
 
