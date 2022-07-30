@@ -81,9 +81,9 @@ const Img = styled.div`
 
 
 const Box = styled.div`
-
-
-
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
 

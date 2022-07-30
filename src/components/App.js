@@ -12,18 +12,20 @@ export default function App(){
     // const [bolinha, setBolinha] = useState(0);
 
     return(
-        <BrowserRouter>
-            <GlobalStyle/>
+        <>
+          <GlobalStyle/>
+          <BrowserRouter>
 
-            <Header/>
+              <Header/>
 
-            <Routes>
-                <Route path="/" element={<ExploreMovies/>}  />
-                <Route path="/sessoes/:idFilme" element={<SelectSession/>} />
-                <Route path="/assentos/:idSessao" element={<SelectSeats/>}/>
-            </Routes>
-
-        </BrowserRouter>
+              <Routes>
+                  <Route path="/" element={<ExploreMovies/>}  />
+                  <Route path="/sessoes/:idFilme" element={<SelectSession/>} />
+                  <Route path="/assentos/:idSessao" element={<SelectSeats/>}/>
+              </Routes>
+          </BrowserRouter>
+        </>
+        
     );
 }
 

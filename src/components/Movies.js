@@ -18,7 +18,6 @@ export default function Movies(){
 
     return(
         <Wrapper>
-            
             {movies.map(movie =><Link to={`/sessoes/${movie.id}`}> <Movie key={movie.id} id={movie.id} title={movie.title} img={movie.posterURL} overview={movie.overview} date={movie.releaseDate}/> </Link>)}
         </Wrapper>
     );
@@ -31,7 +30,6 @@ const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* align-items: center; */
     gap: 40px;
 
     background-color: #E5E5E5; 
@@ -40,11 +38,12 @@ const Wrapper = styled.div`
 
 const Loading = styled.div`
 
-    height: 100px;
+    height: 100vh;
     font-size: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+
+    background-color: #E5E5E5; 
+
 `;
-
-

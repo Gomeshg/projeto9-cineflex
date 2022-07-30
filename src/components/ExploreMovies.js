@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Movies from './Movies';
 
+
 export default function ExploreMovies({}){
     return(
         <Wrapper>

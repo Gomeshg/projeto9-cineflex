@@ -5,8 +5,8 @@ import {useState, useEffect} from 'react';
 import Footer from './Footer';
 import Schedule from './Schedule';
 
-export default function Schedules({idFilme}){
 
+export default function Schedules({idFilme}){
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
@@ -15,13 +15,12 @@ export default function Schedules({idFilme}){
     }, [])
 
     if(movie === null) return (<Loading>Carregando...</Loading>);
-    console.log(movie)
 
     
     return(
         <Wrapper>
 
-            {movie.days.map( movieDays => <Schedule schedule={movieDays} /> )}
+            {movie.days.map( movieDays => <Schedule schedule={movieDays} idFilme={idFilme} /> )}
 
             <Footer img={movie.posterURL} title={movie.title}  />
             

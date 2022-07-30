@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
 
-export default function Schedule({schedule}){
+export default function Schedule({schedule, idFilme}){
 
     return(
         <Wrapper>
@@ -12,7 +12,7 @@ export default function Schedule({schedule}){
             </Title>
 
             <TimeBox>
-                {schedule.showtimes.map(showTime => <Link to={`/assentos/${schedule.id}`}> <Time> <p>{showTime.name}</p></Time> </Link> )}
+                {schedule.showtimes.map(showTime => <Link to={`/assentos/${showTime.id}`}> <Time> {showTime.name}</Time> </Link> )}
             </TimeBox>
                         
         </Wrapper>
@@ -20,24 +20,20 @@ export default function Schedule({schedule}){
 }
 
 const Wrapper = styled.div`
-
     display: flex;
     flex-direction: column;
     gap: 30px;
 `;
 
 const Title = styled.div`
-
     font-family: 'Roboto';
     font-weight: 400;
     font-size: 20px;
     color:rgba(41, 56, 69, 1);
-
 `;
 
 
 const TimeBox = styled.div`
-
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -53,13 +49,10 @@ const Time = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  p{
-    font-family: 'Roboto';
-    font-weight: 400;
-    font-size: 18px;
-    text-align: center;
-    color: white;
-    letter-spacing: 0.02em;
-  }
+
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
+  letter-spacing: 0.02em;
 `;
