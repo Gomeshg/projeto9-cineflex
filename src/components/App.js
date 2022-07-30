@@ -4,7 +4,7 @@ import {createGlobalStyle} from 'styled-components';
 
 import Header from "./Header"
 import ExploreMovies from "./ExploreMovies";
-
+import SelectedMovie from "./SelectedMovie";
 
 
 export default function App(){
@@ -19,6 +19,7 @@ export default function App(){
 
             <Routes>
                 <Route path="/" element={<ExploreMovies/>}  />
+                <Route path="/sessoes/:idFilme" element={<SelectedMovie/>} />
             </Routes>
 
         </BrowserRouter>
@@ -33,5 +34,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: none;
     outline: none;
+    text-decoration: none;
   }
 `
