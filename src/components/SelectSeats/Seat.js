@@ -1,9 +1,32 @@
 import styled from "styled-components";
+import {useState} from 'react';
 
 
-export default function Seat({id, name, isAvailable, text}){
+export default function Seat({id, name, isAvailable, text, ids, setIds, seatNumbers, setSeatNumbers}){
+    
     let color;
     let border;
+
+    const [refresh, setRefresh] = useState(false);
+    
+    function Select(){
+        setRefresh(!refresh)
+
+        if(ids.includes(id)){
+            let i = ids.indexOf(id)
+            ids.splice(i, 1)
+            setIds([...ids])
+            setSeatNumbers([...ids])
+        }
+        else{
+            setIds([...ids, id])
+            setSeatNumbers([...ids, name])
+        }
+    }
+    
+    function Off(){
+        alert('Esse assento não está disponível')
+    }
 
     if(text !== undefined){
         
@@ -29,11 +52,24 @@ export default function Seat({id, name, isAvailable, text}){
     }
 
     else{
-        color = 'rgba(195, 207, 217, 1)';
-        border = 'rgba(123, 139, 153, 1)';
+
+        if(!refresh){
+            if(isAvailable){
+                color = 'rgba(195, 207, 217, 1)';
+                border = 'rgba(123, 139, 153, 1)';
+            }
+            else{
+                color = 'rgba(251, 225, 146, 1)';
+                border = 'rgba(247, 197, 43, 1)';
+            }
+        }
+        else{
+            color = 'rgba(141, 215, 207, 1)';
+            border = 'rgba(26, 174, 158, 1)';
+        }
 
         return(
-            <Wrapper color={color} border={border}>
+            <Wrapper onClick={isAvailable ? Select:Off} color={color} border={border}>
                 <Number>{name}</Number>
             </Wrapper>
         );
@@ -59,6 +95,8 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    cursor: pointer;
 `;
 
 const Number = styled.div`

@@ -6,12 +6,17 @@ import { useParams } from 'react-router-dom';
 
 import Seats from './Seats';
 import Seat from './Seat';
+import Footer from '../Footer';
+import Form from './Form';
 
 
 export default function SelectSeats(){
 
     const {idSessao}  = useParams();
     const [data, setData] = useState(null);
+
+    const [ids, setIds] = useState([]); 
+    const [seatNumbers, setSeatNumbers] = useState([]);
 
     useEffect(() => {
 
@@ -20,17 +25,16 @@ export default function SelectSeats(){
         promise.catch(e => console.log(e.response))
     }, [])
 
-    console.log(data)
 
     if(data === null) return (<Loading>Carregando...</Loading>);
 
     return(
         <Wrapper>
 
-            <Title>Selecione o(s) assentos</Title>
-
             <SeatContainer>
-                <Seats seats={data.seats}/>
+                <Title>Selecione o(s) assentos</Title>
+
+                <Seats seats={data.seats} ids={ids} setIds={setIds} seatNumbers={seatNumbers} setSeatNumbers={setSeatNumbers}/>
                 <SeatBox>
                     <Seat text="Selecionado"/>
                     <Seat text="Disponível"/>
@@ -38,14 +42,23 @@ export default function SelectSeats(){
                 </SeatBox>
             </SeatContainer>
 
+          
+            <Form ids={ids} seatNumbers={seatNumbers} setSeatNumbers={setSeatNumbers}/>
+
+            <Footer img={data.movie.posterURL} title={data.movie.title} weekday={data.day.weekday} time={data.day.date} />
+
         </Wrapper>
     );
 }
 
 
 const Wrapper = styled.div`
+    padding-bottom: calc(117px + 30px);
 
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
 `;
 
 const Loading = styled.div`
@@ -63,6 +76,7 @@ const Title = styled.div`
     font-size: 24px;
     font-weight: 400;    
     letter-spacing: 0.04em;
+    text-align: center;
 
     display: flex;
     justify-content: center;
@@ -74,7 +88,7 @@ const Title = styled.div`
 const SeatContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
 `;
 
 const SeatBox = styled.div`
@@ -83,3 +97,4 @@ const SeatBox = styled.div`
     display: flex;
     justify-content: space-around;
 `;
+

@@ -1,19 +1,22 @@
 import styled from 'styled-components';
-import Movies from './Movies';
+import Schedules from './Schedules';
+import { useParams } from 'react-router-dom';
 
 
-export default function ExploreMovies({}){
+export default function SelectSession({}){
+
+    const { idFilme } = useParams();
+
     return(
         <Wrapper>
-            <Title>Selecione o filme</Title>
-            <Movies/>
+            <Title>Selecione o horário</Title>
+            <Schedules idFilme={idFilme}/>
         </Wrapper>
     );
 }
 
 const Wrapper = styled.div`
 
-    background-color: #E5E5E5;
 `;
 
 const Title = styled.div`

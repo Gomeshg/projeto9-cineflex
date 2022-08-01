@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {createGlobalStyle} from 'styled-components';
 
 import Header from "./Header"
-import ExploreMovies from "./ExploreMovies";
-import SelectSession from "./SelectSession";
-import SelectSeats from "./SelectSeats.js";
+import ExploreMovies from "./ExploreMovies/ExploreMovies";
+import SelectSession from "./SelectSession/SelectSession";
+import SelectSeats from "./SelectSeats/SelectSeats";
+import Sucess from "./Sucess/Sucess"
 
 
 export default function App(){
@@ -22,6 +23,7 @@ export default function App(){
                   <Route path="/" element={<ExploreMovies/>}  />
                   <Route path="/sessoes/:idFilme" element={<SelectSession/>} />
                   <Route path="/assentos/:idSessao" element={<SelectSeats/>}/>
+                  <Route path="/sucesso" element={<Sucess/>}></Route>
               </Routes>
           </BrowserRouter>
         </>

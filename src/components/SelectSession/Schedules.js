@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 
-import Footer from './Footer';
+import Footer from '../Footer';
 import Schedule from './Schedule';
 
 
