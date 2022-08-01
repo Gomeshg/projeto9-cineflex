@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {createGlobalStyle} from 'styled-components';
 
+import {useState} from 'react';
+
 import Header from "./Header"
 import ExploreMovies from "./ExploreMovies/ExploreMovies";
 import SelectSession from "./SelectSession/SelectSession";
@@ -10,7 +12,9 @@ import Sucess from "./Sucess/Sucess"
 
 export default function App(){
 
-    // const [bolinha, setBolinha] = useState(0);
+    const [infoRequest, setInfoRequest] = useState({});
+
+    console.log(infoRequest)
 
     return(
         <>
@@ -22,8 +26,8 @@ export default function App(){
               <Routes>
                   <Route path="/" element={<ExploreMovies/>}  />
                   <Route path="/sessoes/:idFilme" element={<SelectSession/>} />
-                  <Route path="/assentos/:idSessao" element={<SelectSeats/>}/>
-                  <Route path="/sucesso" element={<Sucess/>}></Route>
+                  <Route path="/assentos/:idSessao" element={<SelectSeats infoRequest={infoRequest} setInfoRequest={setInfoRequest}/>}/>
+                  <Route path="/sucesso" element={<Sucess infoRequest={infoRequest}/>}></Route>
               </Routes>
           </BrowserRouter>
         </>

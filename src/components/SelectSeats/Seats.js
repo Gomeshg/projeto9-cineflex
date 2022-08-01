@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Seat from "./Seat";
 
 export default function Seats({seats, ids, setIds, seatNumbers, setSeatNumbers}){
-    console.log(ids)
 
     return(
         <Wrapper>

@@ -20,7 +20,7 @@ export default function Seat({id, name, isAvailable, text, ids, setIds, seatNumb
         }
         else{
             setIds([...ids, id])
-            setSeatNumbers([...ids, name])
+            setSeatNumbers([...seatNumbers, name])
         }
     }
     

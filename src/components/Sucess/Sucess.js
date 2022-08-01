@@ -1,23 +1,26 @@
 import styled from "styled-components";
 import Button from "../Button"
-export default function Sucess(){
-    
+import Requests from "./Requests"
 
+export default function Sucess({infoRequest}){
+    
+    
     return(
         <Wrapper>
             <Title>Pedido feito com sucesso!</Title>
-
+            <Requests infoRequest={infoRequest}/>
             <Button text="Voltar para home"></Button>
         </Wrapper>
     );
+   
 }
 
 const Wrapper = styled.div`
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
-    background-color: red;
 `;
 
 const Title = styled.div`
@@ -30,5 +33,8 @@ const Title = styled.div`
     justify-content: center;
     align-items: center;
 
+    text-align: center;
+
     height: 117px;
+    width: 50%;
 `;

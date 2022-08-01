@@ -2,30 +2,67 @@ import styled from "styled-components";
 import Button from "../Button";
 import {useState} from 'react';
 import axios from 'axios';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export default function Form({ids, seatNumbers, setSeatNumbers}){
+export default function Form({ids, seatNumbers, setSeatNumbers, infoRequest, setInfoRequest}){
 
     const [name, setName] = useState("");
 	const [cpf, setCPF] = useState("");
     let navigate = useNavigate();
+
+
+    function sort(array){
+        array = array.map(item => parseInt(item));
+        if(array.length === 0) return [];
+
+        let menorValor;
+        let menorIndex;
+        for(let i = 0; i < array.length; i++){
+            
+            menorValor = array[i] 
+            menorIndex = i;
+
+            for(let j = i; j < array.length; j++){
+                if(i === j) continue;
+                
+                if(array[j] < menorValor){
+                    menorValor = array[j] 
+                    menorIndex = j;
+                }
+            }
+        
+            changeElements(array, i, menorIndex)
+        }
+
+        return array;
+    }
+    function changeElements(array, index1, index2){
+        let temp = array[index1]
+        array[index1] = array[index2]
+        array[index2] = temp
+    }
     
 
     function sendForm(e){
         e.preventDefault();
+
+        if(ids.length === 0) return alert('Você não selecionou nenhum assento!');
+
         let idList = ids.map(id => parseInt(id))
 
-        let form = {
+        const form = {
             ids: idList,
             name: name, 
             cpf: cpf
         }
-        console.log(form)
+
+        const seatNumbersSorted = sort(seatNumbers)
+        setInfoRequest({...infoRequest, seats: seatNumbersSorted, name: name, cpf: cpf})
+
         const promise = axios.post(`https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many`, form);
         promise.then(navigate("/sucesso"))
         promise.catch(e => console.log(e))
     }
-
 
     return(
         <Wrapper>
@@ -38,13 +75,11 @@ export default function Form({ids, seatNumbers, setSeatNumbers}){
                     <label htmlFor="">Cpf do comprador: </label>
                     <input type="text" placeholder="Digite o seu cpf..." value={cpf} onChange={e => setCPF(e.target.value)} required></input>
                 </div>
-                {/* <Link to="/sucesso"> <Button type="submit" text="Reserver assento(s)"/> </Link> */}
                 <Button type="submit" text="Reservar assento(s)"/>
            </form>
         </Wrapper>
     );
 }
-
 
 const Wrapper = styled.div`
 
@@ -86,5 +121,4 @@ const Wrapper = styled.div`
         font-size: 18px;
         color: rgba(175, 175, 175, 1);
     }
-
 `;

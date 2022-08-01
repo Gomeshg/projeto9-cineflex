@@ -10,7 +10,7 @@ import Footer from '../Footer';
 import Form from './Form';
 
 
-export default function SelectSeats(){
+export default function SelectSeats({infoRequest, setInfoRequest}){
 
     const {idSessao}  = useParams();
     const [data, setData] = useState(null);
@@ -18,10 +18,19 @@ export default function SelectSeats(){
     const [ids, setIds] = useState([]); 
     const [seatNumbers, setSeatNumbers] = useState([]);
 
+
     useEffect(() => {
 
         const promise = axios.get(`https://mock-api.driven.com.br/api/v7/cineflex/showtimes/${idSessao}/seats`);
         promise.then(res => setData(res.data))
+        promise.then(res => {
+            const request = {
+                movieTitle: res.data.movie.title,
+                date: `${res.data.day.date} - ${res.data.name}`
+            }
+    
+            setInfoRequest({...request})
+        })
         promise.catch(e => console.log(e.response))
     }, [])
 
@@ -43,9 +52,9 @@ export default function SelectSeats(){
             </SeatContainer>
 
           
-            <Form ids={ids} seatNumbers={seatNumbers} setSeatNumbers={setSeatNumbers}/>
+            <Form ids={ids} seatNumbers={seatNumbers} setSeatNumbers={setSeatNumbers} infoRequest={infoRequest} setInfoRequest={setInfoRequest}/>
 
-            <Footer img={data.movie.posterURL} title={data.movie.title} weekday={data.day.weekday} time={data.day.date} />
+            <Footer img={data.movie.posterURL} title={data.movie.title} weekday={data.day.weekday} time={data.name} />
 
         </Wrapper>
     );
