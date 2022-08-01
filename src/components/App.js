@@ -14,8 +14,6 @@ export default function App(){
 
     const [infoRequest, setInfoRequest] = useState({});
 
-    console.log(infoRequest)
-
     return(
         <>
           <GlobalStyle/>
@@ -25,9 +23,9 @@ export default function App(){
 
               <Routes>
                   <Route path="/" element={<ExploreMovies/>}  />
-                  <Route path="/sessoes/:idFilme" element={<SelectSession/>} />
-                  <Route path="/assentos/:idSessao" element={<SelectSeats infoRequest={infoRequest} setInfoRequest={setInfoRequest}/>}/>
-                  <Route path="/sucesso" element={<Sucess infoRequest={infoRequest}/>}></Route>
+                  <Route path="/sessoes/:idFilme" element={<SelectSession />} />
+                  <Route path="/assentos/:idSessao" element={<SelectSeats infoRequest={infoRequest} setInfoRequest={setInfoRequest} />}/>
+                  <Route path="/sucesso" element={<Sucess infoRequest={infoRequest} />}></Route>
               </Routes>
           </BrowserRouter>
         </>

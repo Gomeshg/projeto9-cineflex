@@ -12,9 +12,10 @@ import Form from './Form';
 
 export default function SelectSeats({infoRequest, setInfoRequest}){
 
+    
     const {idSessao}  = useParams();
     const [data, setData] = useState(null);
-
+    
     const [ids, setIds] = useState([]); 
     const [seatNumbers, setSeatNumbers] = useState([]);
 

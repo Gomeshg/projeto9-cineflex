@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom';
 
 
 export default function Sucess({infoRequest}){
+    
     let navigate = useNavigate();
 
     function reset(){
