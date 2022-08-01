@@ -1,15 +1,21 @@
 import styled from "styled-components";
 import Button from "../Button"
 import Requests from "./Requests"
+import {useNavigate} from 'react-router-dom';
+
 
 export default function Sucess({infoRequest}){
-    
+    let navigate = useNavigate();
+
+    function reset(){
+        navigate('/')
+    }
     
     return(
         <Wrapper>
             <Title>Pedido feito com sucesso!</Title>
             <Requests infoRequest={infoRequest}/>
-            <Button text="Voltar para home"></Button>
+            <Button reset={reset} text="Voltar para home"></Button>
         </Wrapper>
     );
    

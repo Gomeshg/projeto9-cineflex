@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
-export default function Button({text}){
+export default function Button({text, reset}){
+
+    if(reset !== undefined){
+      return(
+        <Wrapper onClick={reset}>{text}</Wrapper>
+    );
+    }
 
     return(
-        <Wrapper>{text}</Wrapper>
-    );
+      <Wrapper>{text}</Wrapper>
+  );
 }
 
 const Wrapper = styled.button`
